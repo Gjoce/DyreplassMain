@@ -7,6 +7,7 @@ document.getElementById('contact-form').addEventListener('submit', function(even
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element');
 }
+
 document.getElementById('translate-btn').addEventListener('click', function() {
     var translateElement = document.querySelector('.goog-te-combo');
     if (translateElement) {

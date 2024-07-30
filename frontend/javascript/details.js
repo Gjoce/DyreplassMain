@@ -48,8 +48,22 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </div>
                 `).join('') : '<p>No parent pictures available.</p>';
 
+                // Create breeder button
+                const breederButton = document.createElement('button');
+                breederButton.textContent = breeder.name;
+                breederButton.className = 'btn filterzakucinja '; // Add margin-left for spacing
+                breederButton.addEventListener('click', () => {
+                    window.location.href = `breederInfo.html?id=${puppy.breeder_id}`;
+                });
+
+                // Create breeder information container
+                const breederInfo = document.createElement('span');
+                breederInfo.textContent = ' ';
+                breederInfo.appendChild(breederButton);
+
                 // Display details
-                document.getElementById('puppy-details').innerHTML = `
+                const detailsContainer = document.getElementById('puppy-details');
+                detailsContainer.innerHTML = `
                     <div class="col-md-6">
                         <div class="carousel-container">
                             <div id="puppyCarousel" class="carousel slide" data-ride="carousel">
@@ -73,11 +87,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <h2 class="mt-3">${puppy.name}</h2>
                         <p><strong>Breed:</strong> ${puppy.breed}</p>
                         <p><strong>Description:</strong> ${puppy.description}</p>
-                        <p><strong>Breeder:</strong> ${breeder.name}</p>
+                        <p><strong>Breeder:</strong> </p>
+                        <p id="breeder-info"></p>
                         <p><strong>Price:</strong> ${puppy.price} EUR</p>
                         <a href="../contact.html" class="btn filterzakucinja">Contact</a>
                     </div>
                 `;
+
+                // Append breeder info to the container
+                document.getElementById('breeder-info').appendChild(breederInfo);
             } else {
                 document.getElementById('puppy-details').innerHTML = `<p>Puppy not found.</p>`;
             }
@@ -88,12 +106,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
         document.getElementById('puppy-details').innerHTML = `<p>No puppy ID provided.</p>`;
     }
+});
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element');
+}
 
-    document.getElementById('translate-btn').addEventListener('click', () => {
-        const translateElement = document.querySelector('select.goog-te-combo');
-        if (translateElement) {
-            translateElement.value = 'no';
-            translateElement.dispatchEvent(new Event('change'));
-        }
-    });
+document.getElementById('translate-btn').addEventListener('click', function() {
+    var translateElement = document.querySelector('.goog-te-combo');
+    if (translateElement) {
+        translateElement.value = 'no'; // Set value to Norwegian
+        translateElement.dispatchEvent(new Event('change')); // Trigger change event
+    }
 });
