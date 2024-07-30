@@ -1,0 +1,41 @@
+
+
+header {
+  background-size: cover;
+  background-position: center;
+  background-color: rgb(255, 194, 44);
+   /* Offset for the navbar */
+}
+
+.card img {
+  height: 200px;
+  object-fit: cover;
+}
+.form-check {
+  padding-left: 40px;
+}
+.filterzakucinja {
+  background-color: rgb(255, 194, 44);
+}
+.card {
+  transition: transform 0.2s;
+}
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.img-fixed {
+  width: auto; /* Set desired width */
+  height: 400px; /* Set desired height */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
+}
+.goog-te-banner-frame.skiptranslate, 
+        .goog-te-gadget-icon, 
+        .goog-te-menu-value > span:first-child {
+            display: none !important;
+        }
+       
+        .goog-te-gadget {
+            display: none !important;
+        }
+

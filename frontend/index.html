@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dyreplass</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Google Translate Element -->
+    <div id="google_translate_element" style="display:none;"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Dyreplass</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">Contact</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" id="search-form">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <button id="translate-btn" class="btn btn-primary ml-2">Translate</button>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="text-black text-center py-4">
+        <div class="container" style="padding: 20px;">
+            <h1>Welcome to Dyreplass, a place to find your ideal puppy</h1>
+        </div>
+    </header>
+
+    <!-- Banner Image -->
+    <div class="text-center my-4">
+        <img src="images/banner.jpg" class="img-fluid rounded" alt="Banner Image">
+    </div>
+    <!-- Bottom Amount Display -->
+    <div id="amount-display" class="fixed-bottom bg-light p-3 text-center">
+        <p id="amount-text">Showing <span id="shown-count">0</span> puppies</p>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <div class="row">
+            <!-- Sidebar -->
+            <aside class="col-md-3">
+                <div class="card">
+                    <div class="list-group">
+                        <h4 class="list-group-item  filterzakucinja text-black">Dog Breeds</h4>
+                        <form id="breed-filter-form">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Labrador Retriever" id="breed1">
+                                <label class="form-check-label" for="breed1">
+                                    Labrador Retriever
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="German Shepherd" id="breed2">
+                                <label class="form-check-label" for="breed2">
+                                    German Shepherd
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Golden Retriever" id="breed3">
+                                <label class="form-check-label" for="breed3">
+                                    Golden Retriever
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Bulldog" id="breed4">
+                                <label class="form-check-label" for="breed4">
+                                    Bulldog
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Beagle" id="breed5">
+                                <label class="form-check-label" for="breed5">
+                                    Beagle
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="Poodle" id="breed6">
+                                <label class="form-check-label" for="breed6">
+                                    Poodle
+                                </label>
+                            </div>
+                            <!-- Add more breeds as needed -->
+                        </form>
+                    </div>
+                </div>
+                <div class="card mt-4">
+                    <h4 class="card-header filterzakucinja text-black">Price Range</h4>
+                    <div class="card-body">
+                        <form id="price-filter-form">
+                            <div class="form-group">
+                                <label for="priceRange">Select Price Range:</label>
+                                <input type="range" class="form-control-range" id="priceRange" min="0" max="1000" step="50">
+                                <span id="priceRangeValue">500</span> EUR
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+            </aside>
+            <!-- Listings -->
+            <section class="col-md-9">
+                <div class="row" id="listings-container">
+                    <!-- Card Example -->
+                    <!-- Dynamically loaded content will go here -->
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="modal fade" id="noResultsModal" tabindex="-1" aria-labelledby="noResultsModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="noResultsModalLabel">No Puppies Found</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Sorry, we couldn't find any puppies matching your search criteria. Please contact us for more information.
+                </div>
+                <div class="modal-footer">
+                    <a href="contact.html" class="btn btn-primary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <div class="container">
+            <p>&copy; 2024 HoundeMarket. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="javascript/glavna.js"></script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
