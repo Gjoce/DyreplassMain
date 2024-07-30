@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const puppyId = urlParams.get('id');
-    console.log('Retrieved puppyId:', puppyId); // Debugging output
 
     if (puppyId) {
         try {
@@ -10,9 +9,16 @@ document.addEventListener('DOMContentLoaded', async () => {
                 throw new Error('Network response was not ok');
             }
             const puppy = await response.json();
-            console.log('Fetched puppy data:', puppy); // Debugging output
 
             if (puppy) {
+                // Fetch breeder details
+                const breederResponse = await fetch(`/api/breeders/${puppy.breeder_id}`);
+                if (!breederResponse.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const breeder = await breederResponse.json();
+
+                // Prepare carousel pictures
                 let pictureUrls = Array.isArray(puppy.picture_url) ? puppy.picture_url : [puppy.picture_url];
                 const carouselIndicators = pictureUrls.map((url, index) => `
                     <li data-target="#puppyCarousel" data-slide-to="${index}" ${index === 0 ? 'class="active"' : ''}></li>
@@ -20,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 const carouselInner = pictureUrls.map((url, index) => `
                     <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                        <img src="${url}" class="d-block w-100" alt="${puppy.name}">
+                        <img src="${url}" class="d-block w-100 small-carousel-image" alt="${puppy.name}">
                     </div>
                 `).join('');
 
@@ -35,23 +41,40 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </a>
                 ` : '';
 
+                // Parent pictures
+                const parentPictures = puppy.parent_pictures ? puppy.parent_pictures.map((url, index) => `
+                    <div class="col-md-6">
+                        <img src="${url}" class="d-block w-100 small-carousel-image mb-3" alt="Parent ${index + 1}">
+                    </div>
+                `).join('') : '<p>No parent pictures available.</p>';
+
+                // Display details
                 document.getElementById('puppy-details').innerHTML = `
                     <div class="col-md-6">
-                        <div id="puppyCarousel" class="carousel slide" data-ride="carousel">
-                            <ol class="carousel-indicators">
-                                ${carouselIndicators}
-                            </ol>
-                            <div class="carousel-inner">
-                                ${carouselInner}
+                        <div class="carousel-container">
+                            <div id="puppyCarousel" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                    ${carouselIndicators}
+                                </ol>
+                                <div class="carousel-inner">
+                                    ${carouselInner}
+                                </div>
+                                ${carouselControls}
                             </div>
-                            ${carouselControls}
+                        </div>
+                        <div class="parent-pictures mt-4">
+                            <h3>Parents</h3>
+                            <div class="row">
+                                ${parentPictures}
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <h2>Name: ${puppy.name}</h2>
+                        <h2 class="mt-3">${puppy.name}</h2>
                         <p><strong>Breed:</strong> ${puppy.breed}</p>
-                        <p><strong>Price:</strong> ${puppy.price} EUR</p>
                         <p><strong>Description:</strong> ${puppy.description}</p>
+                        <p><strong>Breeder:</strong> ${breeder.name}</p>
+                        <p><strong>Price:</strong> ${puppy.price} EUR</p>
                         <a href="../contact.html" class="btn filterzakucinja">Contact</a>
                     </div>
                 `;
@@ -60,19 +83,17 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         } catch (error) {
             console.error('Error fetching puppy details:', error);
-            document.getElementById('puppy-details').innerHTML = `<p>Error fetching details. Please try again later.</p>`;
+            document.getElementById('puppy-details').innerHTML = `<p>Error fetching puppy details.</p>`;
         }
     } else {
-        console.error('puppyId is not defined'); // Debugging output
+        document.getElementById('puppy-details').innerHTML = `<p>No puppy ID provided.</p>`;
     }
-});
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element');
-}
-document.getElementById('translate-btn').addEventListener('click', function() {
-    var translateElement = document.querySelector('.goog-te-combo');
-    if (translateElement) {
-        translateElement.value = 'no'; // Set value to Norwegian
-        translateElement.dispatchEvent(new Event('change')); // Trigger change event
-    }
+
+    document.getElementById('translate-btn').addEventListener('click', () => {
+        const translateElement = document.querySelector('select.goog-te-combo');
+        if (translateElement) {
+            translateElement.value = 'no';
+            translateElement.dispatchEvent(new Event('change'));
+        }
+    });
 });

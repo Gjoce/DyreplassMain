@@ -32,7 +32,6 @@ app.get('/api/puppies', async (req, res) => {
     }
 });
 
-
 // Route to get a specific puppy by ID
 app.get('/api/puppies/:id', async (req, res) => {
     try {
@@ -51,7 +50,23 @@ app.get('/api/puppies/:id', async (req, res) => {
     }
 });
 
-
+// Route to get breeder by ID
+app.get('/api/breeders/:id', async (req, res) => {
+    try {
+        const breederDoc = await db.collection('breeders').doc(req.params.id).get();
+        if (!breederDoc.exists) {
+            console.log('Breeder not found');
+            res.status(404).json({ error: 'Breeder not found' });
+        } else {
+            const breederData = breederDoc.data();
+            breederData.id = breederDoc.id;
+            res.json(breederData);
+        }
+    } catch (error) {
+        console.error('Error fetching breeder:', error);
+        res.status(500).json({ error: 'Database error' });
+    }
+});
 
 // Start the server
 const PORT = 3307;

@@ -46,6 +46,7 @@
     <div class="text-center my-4">
         <img src="images/banner.jpg" class="img-fluid rounded" alt="Banner Image">
     </div>
+    
     <!-- Bottom Amount Display -->
     <div id="amount-display" class="fixed-bottom bg-light p-3 text-center">
         <p id="amount-text">Showing <span id="shown-count">0</span> puppies</p>
@@ -58,7 +59,7 @@
             <aside class="col-md-3">
                 <div class="card">
                     <div class="list-group">
-                        <h4 class="list-group-item  filterzakucinja text-black">Dog Breeds</h4>
+                        <h4 class="list-group-item filterzakucinja text-black">Dog Breeds</h4>
                         <form id="breed-filter-form">
                             <div class="form-check">
                                 <input class="form-check-input" type="checkbox" value="Labrador Retriever" id="breed1">
@@ -112,33 +113,18 @@
                         </form>
                     </div>
                 </div>
-                
             </aside>
+            
             <!-- Listings -->
             <section class="col-md-9">
+                <div class="alert alert-info" role="alert">
+                    If you can't find the puppy you're looking for, please <a href="contact.html" class="alert-link">contact us</a> and we will help you arrange for the specific puppy you want.
+                </div>
                 <div class="row" id="listings-container">
                     <!-- Card Example -->
                     <!-- Dynamically loaded content will go here -->
                 </div>
             </section>
-        </div>
-    </div>
-    <div class="modal fade" id="noResultsModal" tabindex="-1" aria-labelledby="noResultsModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="noResultsModalLabel">No Puppies Found</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    Sorry, we couldn't find any puppies matching your search criteria. Please contact us for more information.
-                </div>
-                <div class="modal-footer">
-                    <a href="contact.html" class="btn btn-primary">Contact Us</a>
-                </div>
-            </div>
         </div>
     </div>
 
