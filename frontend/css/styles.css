@@ -32,19 +32,9 @@ header {
   object-fit: cover;
 }
 
-/* CSS for carousel container and images */
-.carousel-container {
-  max-width: 100%;
-  margin: 0 auto;
-}
 
-.small-carousel-image {
-  max-height: 300px;
-  width: 100%;
-  object-fit: contain;
-  object-position: center;
-  border-radius: 10px;
-}
+
+
 
 .goog-te-banner-frame.skiptranslate,
 .goog-te-gadget-icon,
@@ -70,3 +60,41 @@ header {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.carousel-inner img {
+  width: 100%;
+  height: auto;
+}
+
+.small-carousel-image {
+  max-height: 400px; /* Adjust this value as needed */
+  object-fit: cover;
+}
+
+#puppy-details h2 {
+  font-weight: 700;
+}
+
+#puppy-details p {
+  font-weight: 500;
+}
+
+#puppy-details .btn {
+  font-weight: 700;
+}
+
+#puppy-details .card img {
+  max-height: 400px; /* Adjust this value as needed */
+  object-fit: cover;
+}
+
+

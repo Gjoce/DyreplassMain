@@ -11,14 +11,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             const puppy = await response.json();
 
             if (puppy) {
-                // Fetch breeder details
                 const breederResponse = await fetch(`/api/breeders/${puppy.breeder_id}`);
                 if (!breederResponse.ok) {
                     throw new Error('Network response was not ok');
                 }
                 const breeder = await breederResponse.json();
 
-                // Prepare carousel pictures
                 let pictureUrls = Array.isArray(puppy.picture_url) ? puppy.picture_url : [puppy.picture_url];
                 const carouselIndicators = pictureUrls.map((url, index) => `
                     <li data-target="#puppyCarousel" data-slide-to="${index}" ${index === 0 ? 'class="active"' : ''}></li>
@@ -41,31 +39,26 @@ document.addEventListener('DOMContentLoaded', async () => {
                     </a>
                 ` : '';
 
-                // Parent pictures
                 const parentPictures = puppy.parent_pictures ? puppy.parent_pictures.map((url, index) => `
                     <div class="col-md-6">
                         <img src="${url}" class="d-block w-100 small-carousel-image mb-3" alt="Parent ${index + 1}">
                     </div>
                 `).join('') : '<p>No parent pictures available.</p>';
 
-                // Create breeder button
                 const breederButton = document.createElement('button');
                 breederButton.textContent = breeder.name;
-                breederButton.className = 'btn filterzakucinja '; // Add margin-left for spacing
+                breederButton.className = 'btn btn-warning ml-2';
                 breederButton.addEventListener('click', () => {
                     window.location.href = `breederInfo.html?id=${puppy.breeder_id}`;
                 });
 
-                // Create breeder information container
                 const breederInfo = document.createElement('span');
-                breederInfo.textContent = ' ';
                 breederInfo.appendChild(breederButton);
 
-                // Display details
                 const detailsContainer = document.getElementById('puppy-details');
                 detailsContainer.innerHTML = `
-                    <div class="col-md-6">
-                        <div class="carousel-container">
+                    <div class="col-md-6 mb-4">
+                        <div class="card">
                             <div id="puppyCarousel" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
                                     ${carouselIndicators}
@@ -76,7 +69,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                                 ${carouselControls}
                             </div>
                         </div>
-                        <div class="parent-pictures mt-4">
+                        <div class="mt-4">
                             <h3>Parents</h3>
                             <div class="row">
                                 ${parentPictures}
@@ -84,17 +77,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <h2 class="mt-3">${puppy.name}</h2>
-                        <p><strong>Breed:</strong> ${puppy.breed}</p>
-                        <p><strong>Description:</strong> ${puppy.description}</p>
-                        <p><strong>Breeder:</strong> </p>
-                        <p id="breeder-info"></p>
-                        <p><strong>Price:</strong> ${puppy.price} EUR</p>
-                        <a href="../contact.html" class="btn filterzakucinja">Contact</a>
+                        <div class="card p-4">
+                            <h2 class="mt-3">${puppy.name}</h2>
+                            <p><strong>Breed:</strong> ${puppy.breed}</p>
+                            <p><strong>Description:</strong> ${puppy.description}</p>
+                            <p><strong>Breeder:</strong> </p>
+                            <p id="breeder-info"></p>
+                            <p><strong>Price:</strong> ${puppy.price} EUR</p>
+                            <a href="../contact.html" class="btn btn-warning">Contact</a>
+                        </div>
                     </div>
                 `;
 
-                // Append breeder info to the container
                 document.getElementById('breeder-info').appendChild(breederInfo);
             } else {
                 document.getElementById('puppy-details').innerHTML = `<p>Puppy not found.</p>`;
@@ -107,6 +101,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('puppy-details').innerHTML = `<p>No puppy ID provided.</p>`;
     }
 });
+
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element');
 }
@@ -114,7 +109,7 @@ function googleTranslateElementInit() {
 document.getElementById('translate-btn').addEventListener('click', function() {
     var translateElement = document.querySelector('.goog-te-combo');
     if (translateElement) {
-        translateElement.value = 'no'; // Set value to Norwegian
-        translateElement.dispatchEvent(new Event('change')); // Trigger change event
+        translateElement.value = 'no';
+        translateElement.dispatchEvent(new Event('change'));
     }
 });
