@@ -1,30 +1,27 @@
+const functions = require('firebase-functions');
 const express = require('express');
 const app = express();
 const admin = require('firebase-admin');
 const cors = require('cors');
-app.use(cors());
-const serviceAccount = require('C:\\Users\\dimov\\OneDrive\\Desktop\\dyrplass-3ea73-firebase-adminsdk-f1znv-9cbc042070.json'); // Update with the correct path
 
-// Initialize Firebase
+app.use(cors({ origin: true }));
+app.use(express.json());
+
+const serviceAccount = require('C:\\Users\\dimov\\OneDrive\\Desktop\\dyrplass-3ea73-firebase-adminsdk-f1znv-9cbc042070.json'); // Adjust the path
+
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    projectId: 'dyrplass-3ea73' // Replace with your project ID
+    projectId: 'dyrplass-3ea73'
 });
 
 const db = admin.firestore();
 
-// Middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(express.static('../public'));
-
-// Route to get all puppies
 app.get('/api/puppies', async (req, res) => {
     try {
         const puppiesSnapshot = await db.collection('puppies').get();
         const puppies = puppiesSnapshot.docs.map(doc => {
             const data = doc.data();
-            data.id = doc.id; // Make sure to include the document ID
+            data.id = doc.id;
             return data;
         });
         res.json(puppies);
@@ -34,7 +31,6 @@ app.get('/api/puppies', async (req, res) => {
     }
 });
 
-// Route to get a specific puppy by ID
 app.get('/api/puppies/:id', async (req, res) => {
     try {
         const puppyDoc = await db.collection('puppies').doc(req.params.id).get();
@@ -52,7 +48,6 @@ app.get('/api/puppies/:id', async (req, res) => {
     }
 });
 
-// Route to get breeder by ID
 app.get('/api/breeders/:id', async (req, res) => {
     try {
         const breederDoc = await db.collection('breeders').doc(req.params.id).get();
@@ -71,4 +66,3 @@ app.get('/api/breeders/:id', async (req, res) => {
 });
 
 exports.api = functions.https.onRequest(app);
-
