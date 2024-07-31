@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (breeder.picture_url && breeder.picture_url.length > 0) {
                 const gallery = breeder.picture_url.map(url => `
                     <div class="col-md-4 mb-3">
-                        <img src="${url}" class="img-fluid rounded" alt="Previous Puppy Photo">
+                        <img src="${url}" class="img-fluid fixed-size rounded" alt="Previous Puppy Photo">
                     </div>
                 `).join('');
 
