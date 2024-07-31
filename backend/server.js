@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const admin = require('firebase-admin');
+const cors = require('cors');
+app.use(cors());
 const serviceAccount = require('C:\\Users\\dimov\\OneDrive\\Desktop\\dyrplass-3ea73-firebase-adminsdk-f1znv-9cbc042070.json'); // Update with the correct path
 
 // Initialize Firebase
