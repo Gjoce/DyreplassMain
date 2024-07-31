@@ -17,8 +17,7 @@ header {
 
 /* Make sure the navbar collapse works correctly */
 .navbar-collapse {
-  transition: height 0.35s ease;
-   /* Smooth transition for collapsing */
+  transition: height 0.35s ease; /* Smooth transition for collapsing */
 }
 
 .navbar-brand img {
