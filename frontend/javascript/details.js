@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 const carouselInner = pictureUrls.map((url, index) => `
                     <div class="carousel-item ${index === 0 ? 'active' : ''}">
-                        <img src="${url}" class="d-block w-100 small-carousel-image" alt="${puppy.name}">
+                        <img src="${url}" class="d-block w-100 small-carousel-image" alt="${puppy.name}" data-full-url="${url}">
                     </div>
                 `).join('');
 
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 const parentPictures = puppy.parent_pictures ? puppy.parent_pictures.map((url, index) => `
                     <div class="col-md-6">
-                        <img src="${url}" class="d-block w-100 small-carousel-image mb-3" alt="Parent ${index + 1}">
+                        <img src="${url}" class="d-block w-100 small-carousel-image mb-3" alt="Parent ${index + 1}" data-full-url="${url}">
                     </div>
                 `).join('') : '<p>No parent pictures available.</p>';
 
@@ -90,6 +90,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                 `;
 
                 document.getElementById('breeder-info').appendChild(breederInfo);
+
+                // Add click event listeners to images
+                const images = document.querySelectorAll('.small-carousel-image');
+                images.forEach(image => {
+                    image.addEventListener('click', () => {
+                        const fullUrl = image.getAttribute('data-full-url');
+                        window.location.href = `fullImage.html?url=${encodeURIComponent(fullUrl)}`;
+                    });
+                });
             } else {
                 document.getElementById('puppy-details').innerHTML = `<p>Puppy not found.</p>`;
             }
