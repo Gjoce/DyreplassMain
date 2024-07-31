@@ -70,6 +70,8 @@ app.get('/api/breeders/:id', async (req, res) => {
     }
 });
 
+exports.api = functions.https.onRequest(app);
+
 // Start the server
 const PORT = 3307;
 app.listen(PORT, () => {
