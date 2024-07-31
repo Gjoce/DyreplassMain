@@ -14,7 +14,7 @@ const db = admin.firestore();
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(express.static('../frontend'));
+app.use(express.static('../public'));
 
 // Route to get all puppies
 app.get('/api/puppies', async (req, res) => {
