@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch('/api/puppies');
+        const response = await fetch('https://dyrplass-3ea73.web.app/api/puppies');
         const puppies = await response.json();
         const listingsContainer = document.getElementById('listings-container');
         const amountDisplay = document.getElementById('amount-display');
