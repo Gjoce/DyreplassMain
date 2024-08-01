@@ -25,6 +25,8 @@ jobs:
           repoToken: ${{ secrets.GITHUB_TOKEN }}
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_DYRPLASS_3EA73 }}
           projectId: dyrplass-3ea73
+          channelId: ${{ github.event.pull_request.number }}
+          expires: 7d
 
   deploy_on_push:
     if: github.ref == 'refs/heads/main'
