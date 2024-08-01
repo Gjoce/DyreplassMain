@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch('https://dyrplass-3ea73.web.app/api/puppies');
+        const response = await fetch('/api/puppies');
         const puppies = await response.json();
         const listingsContainer = document.getElementById('listings-container');
         const amountDisplay = document.getElementById('amount-display');
@@ -50,14 +50,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         function filterPuppies() {
             const selectedBreeds = getSelectedBreeds();
-            const priceRange = document.getElementById('priceRange').value;
             const searchQuery = document.getElementById('search-input').value.toLowerCase();
 
             const filteredPuppies = puppies.filter(puppy => {
                 const matchesBreed = selectedBreeds.length === 0 || selectedBreeds.includes(puppy.breed);
-                const matchesPrice = parseFloat(puppy.price) <= parseFloat(priceRange);
                 const matchesSearch = puppy.breed.toLowerCase().includes(searchQuery) || puppy.name.toLowerCase().includes(searchQuery);
-                return matchesBreed && matchesPrice && matchesSearch;
+                return matchesBreed && matchesSearch;
             });
 
             console.log('Filtered Puppies:', filteredPuppies); // Debugging output
@@ -65,10 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         document.getElementById('breed-filter-form').addEventListener('change', filterPuppies);
-        document.getElementById('priceRange').addEventListener('input', function() {
-            filterPuppies();
-            document.getElementById('priceRangeValue').textContent = this.value;
-        });
+        
         document.getElementById('search-form').addEventListener('submit', function(event) {
             event.preventDefault();
             filterPuppies();
@@ -91,6 +86,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Error fetching puppies:', error);
     }
 });
+
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element');
 }

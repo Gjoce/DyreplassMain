@@ -16,6 +16,10 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
+// Middleware
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static('../public'));
+
 app.get('/api/puppies', async (req, res) => {
     try {
         const puppiesSnapshot = await db.collection('puppies').get();
@@ -65,4 +69,7 @@ app.get('/api/breeders/:id', async (req, res) => {
     }
 });
 
-exports.api = functions.https.onRequest(app);
+const PORT = 3307;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
