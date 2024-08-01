@@ -3,11 +3,13 @@ const express = require('express');
 const app = express();
 const admin = require('firebase-admin');
 const cors = require('cors');
+require('dotenv').config();
+
 
 app.use(cors({ origin: true }));
 app.use(express.json());
 
-const serviceAccount = require('C:\\Users\\dimov\\OneDrive\\Desktop\\dyrplass-3ea73-firebase-adminsdk-f1znv-9cbc042070.json'); // Adjust the path
+const serviceAccount = require(process.env.FIREBASE_CONFIG_FILE); // Adjust the path
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
