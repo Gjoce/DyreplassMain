@@ -5,7 +5,6 @@ const admin = require('firebase-admin');
 const cors = require('cors');
 require('dotenv').config();
 
-
 app.use(cors({ origin: true }));
 app.use(express.json());
 
@@ -25,7 +24,6 @@ app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ error: 'Internal Server Error' });
 });
-
 
 app.get('/api/puppies', async (req, res) => {
     try {
@@ -76,8 +74,5 @@ app.get('/api/breeders/:id', async (req, res) => {
     }
 });
 
-
-const PORT = 3307;
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+// Export the app as a Firebase Function
+exports.api = functions.https.onRequest(app);
