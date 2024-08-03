@@ -21,6 +21,11 @@ const db = admin.firestore();
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static('../public'));
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Internal Server Error' });
+});
+
 
 app.get('/api/puppies', async (req, res) => {
     try {
@@ -70,6 +75,7 @@ app.get('/api/breeders/:id', async (req, res) => {
         res.status(500).json({ error: 'Database error' });
     }
 });
+
 
 const PORT = 3307;
 app.listen(PORT, () => {
