@@ -9,6 +9,6 @@
     "whatwg-url": "^14.0.0"
   },
   "scripts": {
-    "start": "node functions/index.js"
+    "start": "node functions/src/server.js"
   }
 }
