@@ -8,7 +8,8 @@ require('dotenv').config();
 app.use(cors({ origin: true }));
 app.use(express.json());
 
-const serviceAccount = require(process.env.FIREBASE_CONFIG_FILE); // Adjust the path
+// Parse the Firebase configuration JSON from the environment variable
+const serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG_FILE_CONTENTS);
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
@@ -74,5 +75,7 @@ app.get('/api/breeders/:id', async (req, res) => {
     }
 });
 
-// Export the app as a Firebase Function
-exports.api = functions.https.onRequest(app);
+const PORT = 3307;
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+});
