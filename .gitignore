@@ -8,8 +8,8 @@ firebase-debug.log*
 firebase-debug.*.log*
 
 node_modules/
-functions/.env
-functions/etc/secrets/*.json
+backend/.env
+
 
 # Firebase cache
 .firebase/
