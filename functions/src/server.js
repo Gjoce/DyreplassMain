@@ -38,7 +38,9 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 // Pass `db` to routes
 const puppiesRoutes = require('./api/puppies')(db);
+const breedersRoutes = require('./api/breeders')(db);
 app.use('/api/puppies', puppiesRoutes);
+app.use('/api/breeders', breedersRoutes);
 
 // Error handling middleware
 app.use(errorHandler);
