@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             const puppy = await response.json();
 
             if (puppy) {
-                const breederResponse = await fetch(`/api/breeders/${puppy.breeder_id}`);
+                const breederResponse = await fetch(`https://dyreplass-6fca1ec2c6c4.herokuapp.com/api/breeders/${puppy.breeder_id}`);
                 if (!breederResponse.ok) {
                     throw new Error('Network response was not ok');
                 }
