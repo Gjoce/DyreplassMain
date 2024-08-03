@@ -1,28 +1,29 @@
 const functions = require('firebase-functions');
 const express = require('express');
-const app = express();
 const admin = require('firebase-admin');
 const cors = require('cors');
 require('dotenv').config();
 
-app.use(cors({
-    origin: 'https://dyrplass-3ea73.web.app/' 
-  }));
-app.use(express.json());
+const app = express();
 
-// Parse the Firebase configuration JSON from the environment variable
+app.use(cors({
+    origin: 'https://dyrplass-3ea73.web.app' // Ensure this is the correct origin
+}));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static('../public'));
+
+// Initialize Firebase admin SDK
 try {
-    // Access the Firebase config from environment variable
     const firebaseConfig = process.env.FIREBASE_CONFIG_FILE;
 
     if (!firebaseConfig) {
         throw new Error('FIREBASE_CONFIG_FILE environment variable is not set');
     }
 
-    // Parse the Firebase config
     const serviceAccount = JSON.parse(firebaseConfig);
 
-    // Initialize Firebase admin SDK
     admin.initializeApp({
         credential: admin.credential.cert(serviceAccount)
     });
@@ -35,22 +36,20 @@ try {
 
 const db = admin.firestore();
 
-// Middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static('../public'));
+// Error handling middleware
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ error: 'Internal Server Error' });
 });
 
+// API routes
 app.get('/api/puppies', async (req, res) => {
     try {
         const puppiesSnapshot = await db.collection('puppies').get();
-        const puppies = puppiesSnapshot.docs.map(doc => {
-            const data = doc.data();
-            data.id = doc.id;
-            return data;
-        });
+        const puppies = puppiesSnapshot.docs.map(doc => ({
+            id: doc.id,
+            ...doc.data()
+        }));
         res.json(puppies);
     } catch (error) {
         console.error('Error fetching puppies:', error);
@@ -63,12 +62,10 @@ app.get('/api/puppies/:id', async (req, res) => {
         const puppyDoc = await db.collection('puppies').doc(req.params.id).get();
         if (!puppyDoc.exists) {
             console.log('Puppy not found');
-            res.status(404).json({ error: 'Puppy not found' });
-        } else {
-            const puppyData = puppyDoc.data();
-            puppyData.id = puppyDoc.id;
-            res.json(puppyData);
+            return res.status(404).json({ error: 'Puppy not found' });
         }
+        const puppyData = { id: puppyDoc.id, ...puppyDoc.data() };
+        res.json(puppyData);
     } catch (error) {
         console.error('Error fetching puppy:', error);
         res.status(500).json({ error: 'Database error' });
@@ -80,19 +77,18 @@ app.get('/api/breeders/:id', async (req, res) => {
         const breederDoc = await db.collection('breeders').doc(req.params.id).get();
         if (!breederDoc.exists) {
             console.log('Breeder not found');
-            res.status(404).json({ error: 'Breeder not found' });
-        } else {
-            const breederData = breederDoc.data();
-            breederData.id = breederDoc.id;
-            res.json(breederData);
+            return res.status(404).json({ error: 'Breeder not found' });
         }
+        const breederData = { id: breederDoc.id, ...breederDoc.data() };
+        res.json(breederData);
     } catch (error) {
         console.error('Error fetching breeder:', error);
         res.status(500).json({ error: 'Database error' });
     }
 });
 
-const PORT = 3307;
+// Start server
+const PORT = process.env.PORT || 3307;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
