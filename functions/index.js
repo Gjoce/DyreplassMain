@@ -6,17 +6,32 @@ const cors = require('cors');
 require('dotenv').config();
 
 app.use(cors({
-    origin: 'https://dyrplass-3ea73.web.app/' // Replace with your Firebase Hosting URL
+    origin: 'https://dyrplass-3ea73.web.app/' 
   }));
 app.use(express.json());
 
 // Parse the Firebase configuration JSON from the environment variable
-const serviceAccount = JSON.parse(process.env.FIREBASE_CONFIG_FILE_CONTENTS);
+try {
+    // Access the Firebase config from environment variable
+    const firebaseConfig = process.env.FIREBASE_CONFIG_FILE;
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    projectId: 'dyrplass-3ea73'
-});
+    if (!firebaseConfig) {
+        throw new Error('FIREBASE_CONFIG_FILE environment variable is not set');
+    }
+
+    // Parse the Firebase config
+    const serviceAccount = JSON.parse(firebaseConfig);
+
+    // Initialize Firebase admin SDK
+    admin.initializeApp({
+        credential: admin.credential.cert(serviceAccount)
+    });
+
+    console.log('Firebase initialized successfully');
+} catch (error) {
+    console.error('Error initializing Firebase:', error);
+    process.exit(1); // Exit the process with an error code
+}
 
 const db = admin.firestore();
 
