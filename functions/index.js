@@ -5,7 +5,9 @@ const admin = require('firebase-admin');
 const cors = require('cors');
 require('dotenv').config();
 
-app.use(cors({ origin: true }));
+app.use(cors({
+    origin: 'https://dyrplass-3ea73.web.app/' // Replace with your Firebase Hosting URL
+  }));
 app.use(express.json());
 
 // Parse the Firebase configuration JSON from the environment variable

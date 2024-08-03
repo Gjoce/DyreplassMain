@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch('/api/puppies');
+        const response = await fetch('https://dyreplass-6fca1ec2c6c4.herokuapp.com/api/puppies');
         const puppies = await response.json();
         const listingsContainer = document.getElementById('listings-container');
         const amountDisplay = document.getElementById('amount-display');
