@@ -86,6 +86,10 @@ app.get('/api/breeders/:id', async (req, res) => {
         res.status(500).json({ error: 'Database error' });
     }
 });
+app.get('/', (req, res) => {
+    res.send('Hello, world!');
+  });
+  
 
 // Start server
 const port = process.env.PORT || 3000;
