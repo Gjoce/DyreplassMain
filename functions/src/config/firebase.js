@@ -19,6 +19,7 @@ const initializeFirebase = () => {
 
         console.log('Firebase initialized successfully');
         db = admin.firestore();
+        console.log('Firestore DB initialized:', db !== undefined); // Add this line for logging
     } catch (error) {
         console.error('Error initializing Firebase:', error);
         process.exit(1); // Exit the process with an error code
