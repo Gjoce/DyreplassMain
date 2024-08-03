@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     `<div class="card">
                         <img src="${imageUrl}" class="card-img-top img-fluid rounded" style="max-height: 200px; max-width: 100%; object-fit: cover;" alt="${puppy.name}">
                         <div class="card-body">
-                        <h4 class="card-title">${puppy.name}</h4>
+                            <h4 class="card-title">${puppy.name}</h4>
                             <h5 class="card-text">${puppy.breed} Puppy</h5>
                             <p class="card-text">${puppy.price} EUR</p>
                             <a href="../details.html?id=${puppy.id}" class="btn filterzakucinja">Show Details</a>
