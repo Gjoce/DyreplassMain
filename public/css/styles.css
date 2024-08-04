@@ -20,6 +20,10 @@ header {
   transition: height 0.35s ease; /* Smooth transition for collapsing */
 }
 
+.navbar-toggler {
+  background-color: white;
+}
+
 .navbar-brand img {
   height: 100%; /* Adjust as needed */
   max-height: 120px; /* Ensure it fits within the navbar */
