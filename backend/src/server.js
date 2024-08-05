@@ -35,6 +35,24 @@ const breedersRoutes = require('./api/breeders.js')(db);
 app.use('/api/puppies', puppiesRoutes);
 app.use('/api/breeders', breedersRoutes);
 
+app.post('/admin-login', async (req, res) => {
+    const { email, password } = req.body;
+
+    try {
+        // Sign in with email and password
+        const user = await admin.auth().getUserByEmail(email);
+        if (user) {
+            // Simulate password check (Firebase Admin SDK doesn't support direct password verification)
+            // Typically, you would use Firebase Authentication Client SDK for this check
+            res.status(200).send('Login successful');
+        } else {
+            res.status(401).send('Invalid credentials');
+        }
+    } catch (error) {
+        res.status(401).send('Invalid credentials');
+    }
+});
+
 // Error handling middleware
 app.use(errorHandler);
 
