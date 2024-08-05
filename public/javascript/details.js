@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div class="col-md-6">
                         <img src="${url}" class="d-block w-100 small-carousel-image mb-3" alt="Parent ${index + 1}" data-full-url="${url}">
                     </div>
-                `).join('') : '<p>No parent pictures available.</p>';
+                `).join('') : '<p>Ingen foreldrebilder tilgjengelig.</p>';
 
                 const breederButton = document.createElement('button');
                 breederButton.textContent = breeder.name;
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             </div>
                         </div>
                         <div class="mt-4">
-                            <h3>Parents</h3>
+                            <h3>Foreldre</h3>
                             <div class="row">
                                 ${parentPictures}
                             </div>
@@ -79,14 +79,15 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <div class="col-md-6">
                         <div class="card p-4">
                             <h2 class="mt-3">${puppy.name}</h2>
-                            <p><strong>Breed:</strong> ${puppy.breed}</p>
-                            <p><strong>Description:</strong> ${puppy.description}</p>
-                            <p><strong>Breeder:</strong> </p>
+                            <p><strong>Rase:</strong> ${puppy.breed}</p>
+                            <p><strong>Beskrivelse:</strong> ${puppy.description}</p>
+                            <p><strong>Oppdretter:</strong> </p>
                             <p id="breeder-info"></p>
-                            <p><strong>Price:</strong> ${puppy.price} EUR</p>
-                            <a href="../contact.html" class="btn btn-warning">Contact</a>
+                            <p><strong>Pris:</strong> ${puppy.price} EUR</p>
+                            <a href="../contact.html" class="btn btn-warning">Kontakt</a>
                         </div>
                     </div>
+
                 `;
 
                 document.getElementById('breeder-info').appendChild(breederInfo);
