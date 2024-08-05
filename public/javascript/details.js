@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <p><strong>Beskrivelse:</strong> ${puppy.description}</p>
                             <p><strong>Oppdretter:</strong> </p>
                             <p id="breeder-info"></p>
-                            <p><strong>Pris:</strong> ${puppy.price} EUR</p>
+                            <p><strong>Pris:</strong> ${puppy.price} NOK</p>
                             <a href="../contact.html" class="btn btn-warning">Kontakt</a>
                         </div>
                     </div>
