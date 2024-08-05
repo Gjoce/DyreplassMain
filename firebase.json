@@ -21,6 +21,12 @@
           }
         ]
       }
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/admin.html"
+      }
     ]
   }
 }
