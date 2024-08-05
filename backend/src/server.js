@@ -23,7 +23,7 @@ const db = admin.firestore();
 
 // Middleware setup
 app.use(cors({
-    origin: 'https://dyrplass-3ea73.web.app' // Ensure this is the correct origin
+    origin: 'https://dyreplass.no' // Ensure this is the correct origin
 }));
 
 app.use(express.json());
