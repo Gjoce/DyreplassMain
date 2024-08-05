@@ -21,7 +21,38 @@ header {
 }
 
 .navbar-toggler {
+  border: 1px solid white; /* Add white border */
+}
+
+.navbar-toggler-icon {
+  background-image: none;
+  position: relative;
+  width: 30px;
+  height: 20px;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after,
+.navbar-toggler-icon span {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 100%;
   background-color: white;
+}
+
+.navbar-toggler-icon::before {
+  top: 0;
+}
+
+.navbar-toggler-icon::after {
+  bottom: 0;
+}
+
+.navbar-toggler-icon span {
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .navbar-brand img {
@@ -30,7 +61,6 @@ header {
   width: auto;
   display: block; /* Prevents overflow */
 }
-
 
 .nav-link {
   color: white !important; /* Set the text color to white */
@@ -135,6 +165,3 @@ header {
   max-height: 400px; /* Adjust this value as needed */
   object-fit: cover;
 }
-
-
-
