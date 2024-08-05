@@ -165,3 +165,14 @@ header {
   max-height: 400px; /* Adjust this value as needed */
   object-fit: cover;
 }
+
+.card-link {
+  text-decoration: none; /* Remove underline from link */
+  color: inherit; /* Inherit color from parent element */
+}
+
+.card-link:hover {
+  text-decoration: none; /* Ensure no underline on hover */
+  color: inherit; /* Maintain color on hover */
+}
+
