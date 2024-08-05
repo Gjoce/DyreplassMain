@@ -18,13 +18,13 @@ document.getElementById('contact-form').addEventListener('submit', function(even
 });
 
 function googleTranslateElementInit() {
-    new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element');
+    new google.translate.TranslateElement({pageLanguage: 'no', autoDisplay: false}, 'google_translate_element');
 }
 
 document.getElementById('translate-btn').addEventListener('click', function() {
     var translateElement = document.querySelector('.goog-te-combo');
     if (translateElement) {
-        translateElement.value = 'no'; // Set value to Norwegian
+        translateElement.value = 'en'; // Set value to English
         translateElement.dispatchEvent(new Event('change')); // Trigger change event
     }
 });

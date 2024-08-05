@@ -40,12 +40,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
         document.getElementById('breeder-info').innerHTML = '<p>No breeder ID provided.</p>';
     }
+});
 
-    document.getElementById('translate-btn').addEventListener('click', () => {
-        const translateElement = document.querySelector('select.goog-te-combo');
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'no', autoDisplay: false}, 'google_translate_element');
+    }
+    
+    document.getElementById('translate-btn').addEventListener('click', function() {
+        var translateElement = document.querySelector('.goog-te-combo');
         if (translateElement) {
-            translateElement.value = 'no';
-            translateElement.dispatchEvent(new Event('change'));
+            translateElement.value = 'en'; // Set value to English
+            translateElement.dispatchEvent(new Event('change')); // Trigger change event
         }
     });
-});
+    

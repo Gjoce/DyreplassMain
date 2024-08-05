@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,20 +25,20 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="#">Hjem</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about.html">About Us</a>
+                    <a class="nav-link" href="about.html">Om Oss</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
+                    <a class="nav-link" href="contact.html">Kontakt</a>
                 </li>
             </ul>
             <form class="form-inline my-2 my-lg-0" id="search-form">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="search-input">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2" type="search" placeholder="Søk" aria-label="Søk" id="search-input">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Søk</button>
             </form>
-            <button id="translate-btn" class="btn filterzakucinja ml-2">Translate</button>
+            <button id="translate-btn" class="btn filterzakucinja ml-2">Oversett</button>
         </div>
     </nav>
     
@@ -46,7 +46,7 @@
     <!-- Header -->
     <header class="text-black text-center py-4">
         <div class="container" style="padding: 20px;">
-            <h1>Welcome to <strong>Dyreplass</strong>, a place to find your ideal furry friend</h1>
+            <h1>Velkommen til <strong>Dyreplass</strong>, et sted å finne din ideelle pelskledde venn</h1>
         </div>
     </header>
 
@@ -57,7 +57,7 @@
     
     <!-- Bottom Amount Display -->
     <div id="amount-display" class="fixed-bottom bg-light p-3 text-center">
-        <p id="amount-text">Showing <span id="shown-count">0</span> puppies</p>
+        <p id="amount-text">Viser <span id="shown-count">0</span> valper</p>
     </div>
 
     <!-- Main Content -->
@@ -67,31 +67,23 @@
             <aside class="col-md-3">
                 <div class="card">
                     <div class="list-group">
-                        <h4 class="list-group-item filterzakucinja text-black">Dog Breeds</h4>
+                        <h4 class="list-group-item filterzakucinja text-black">Hunderaser</h4>
                         <form id="breed-filter-form">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Labrador Retriever" id="breed1">
-                                <label class="form-check-label" for="breed1">Labrador Retriever</label>
+                                <input class="form-check-input" type="checkbox" value="Maltipoo" id="breed1">
+                                <label class="form-check-label" for="breed1">Maltipoo</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="German Shepherd" id="breed2">
-                                <label class="form-check-label" for="breed2">German Shepherd</label>
+                                <input class="form-check-input" type="checkbox" value="French bulldog" id="breed2">
+                                <label class="form-check-label" for="breed2">Fransk bulldog</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Golden Retriever" id="breed3">
-                                <label class="form-check-label" for="breed3">Golden Retriever</label>
+                                <input class="form-check-input" type="checkbox" value="Cockapoo" id="breed3">
+                                <label class="form-check-label" for="breed3">Cockapoo</label>
                             </div>
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Bulldog" id="breed4">
-                                <label class="form-check-label" for="breed4">Bulldog</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Beagle" id="breed5">
-                                <label class="form-check-label" for="breed5">Beagle</label>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="Poodle" id="breed6">
-                                <label class="form-check-label" for="breed6">Poodle</label>
+                                <input class="form-check-input" type="checkbox" value="Pomeranian" id="breed4">
+                                <label class="form-check-label" for="breed4">Pomeranian</label>
                             </div>
                             <!-- Add more breeds as needed -->
                         </form>
@@ -103,7 +95,7 @@
             <!-- Listings -->
             <section class="col-md-9">
                 <div class="alert alert-info" role="alert">
-                    If you can't find the puppy you're looking for, please <a href="contact.html" class="alert-link">contact us</a> and we will help you arrange for the specific puppy you want.
+                    Hvis du ikke finner valpen du leter etter, vennligst <a href="contact.html" class="alert-link">kontakt oss</a> så hjelper vi deg med å ordne den spesifikke valpen du ønsker.
                 </div>
                 <div class="row" id="listings-container">
                     <!-- Card Example -->
@@ -116,7 +108,7 @@
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3 mt-5">
         <div class="container">
-            <p>&copy; 2024 Dyreplass. All rights reserved.</p>
+            <p>&copy; 2024 Dyreplass. Alle rettigheter reservert.</p>
         </div>
     </footer>
 

@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <div class="card-body">
                                 <h4 class="card-title">${puppy.name}</h4>
                                 <h5 class="card-text">${puppy.breed} Puppy</h5>
-                                <p class="card-text">${puppy.price} EUR</p>
+                                <p class="card-text">${puppy.price} NOK</p>
                             </div>
                         </div>
                     </a>`;
@@ -90,13 +90,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 function googleTranslateElementInit() {
-    new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element');
+    new google.translate.TranslateElement({pageLanguage: 'no', autoDisplay: false}, 'google_translate_element');
 }
 
 document.getElementById('translate-btn').addEventListener('click', function() {
     var translateElement = document.querySelector('.goog-te-combo');
     if (translateElement) {
-        translateElement.value = 'no'; // Set value to Norwegian
+        translateElement.value = 'en'; // Set value to English
         translateElement.dispatchEvent(new Event('change')); // Trigger change event
     }
 });
+
