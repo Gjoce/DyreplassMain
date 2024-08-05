@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "site": "dyreplass",  
+    "site": "dyrplass-3ea73",  
     "public": "public",
     "ignore": [
       "firebase.json",
