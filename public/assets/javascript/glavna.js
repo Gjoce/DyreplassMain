@@ -15,9 +15,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 let imageUrl = Array.isArray(puppy.picture_url) ? puppy.picture_url[0] : puppy.picture_url;
 
+                // Ensure the URL is properly formatted for direct Google Drive links
+                imageUrl = imageUrl.replace('file/d/', 'uc?export=view&id=').replace('/view?usp=sharing', '');
+
                 // Wrap the card in an anchor tag
-                puppyCard.innerHTML = `
-                    <a href="../details.html?id=${puppy.id}" class="card-link">
+                puppyCard.innerHTML = 
+                    `<a href="../details.html?id=${puppy.id}" class="card-link">
                         <div class="card">
                             <img src="${imageUrl}" class="card-img-top img-fluid rounded" style="max-height: 200px; max-width: 100%; object-fit: cover;" alt="${puppy.name}">
                             <div class="card-body">
@@ -30,6 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 listingsContainer.appendChild(puppyCard);
             });
 
+            // Update shown count
             shownCount.textContent = puppiesToShow.length;
 
             // Show modal if no puppies are found
