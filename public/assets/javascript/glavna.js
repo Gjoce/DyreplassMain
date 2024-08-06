@@ -15,11 +15,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 let imageUrl = Array.isArray(puppy.picture_url) ? puppy.picture_url[0] : puppy.picture_url;
 
+                // Use the proxy server to fetch the image
+                const proxyUrl = `https://dyreplass-6fca1ec2c6c4.herokuapp.com/proxy?url=${encodeURIComponent(imageUrl)}`;
+
                 // Wrap the card in an anchor tag
                 puppyCard.innerHTML = 
                     `<a href="../details.html?id=${puppy.id}" class="card-link">
                         <div class="card">
-                            <img src="${imageUrl}" class="card-img-top img-fluid rounded" style="max-height: 200px; max-width: 100%; object-fit: cover;" alt="${puppy.name}">
+                            <img src="${proxyUrl}" class="card-img-top img-fluid rounded" style="max-height: 200px; max-width: 100%; object-fit: cover;" alt="${puppy.name}">
                             <div class="card-body">
                                 <h4 class="card-title">${puppy.name}</h4>
                                 <h5 class="card-text">${puppy.breed} Puppy</h5>
@@ -88,5 +91,3 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Error fetching puppies:', error);
     }
 });
-
-

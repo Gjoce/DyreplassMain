@@ -6,6 +6,7 @@
     "firebase": "^10.12.4",
     "firebase-admin": "^12.3.0",
     "firebase-functions": "^5.0.1",
+    "request": "^2.88.2",
     "whatwg-url": "^14.0.0"
   },
   "scripts": {

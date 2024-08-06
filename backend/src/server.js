@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const request = require('request');
 require('dotenv').config();
 const admin = require('firebase-admin');
 
@@ -20,7 +21,6 @@ admin.initializeApp({
 
 const db = admin.firestore();
 
-
 // Middleware setup
 app.use(cors({
     origin: 'https://dyreplass.no' // Ensure this is the correct origin
@@ -28,6 +28,21 @@ app.use(cors({
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+// Proxy route for Google Drive images
+app.get('/proxy', (req, res) => {
+    const imageUrl = req.query.url;
+    if (!imageUrl) {
+        return res.status(400).send('No URL provided');
+    }
+
+    request
+        .get(imageUrl)
+        .on('error', (err) => {
+            res.status(500).send('Error fetching image');
+        })
+        .pipe(res);
+});
 
 // Pass `db` to routes
 const puppiesRoutes = require('./api/puppies.js')(db);
