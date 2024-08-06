@@ -41,16 +41,4 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('breeder-info').innerHTML = '<p>No breeder ID provided.</p>';
     }
 });
-
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'no', autoDisplay: false}, 'google_translate_element');
-    }
-    
-    document.getElementById('translate-btn').addEventListener('click', function() {
-        var translateElement = document.querySelector('.goog-te-combo');
-        if (translateElement) {
-            translateElement.value = 'en'; // Set value to English
-            translateElement.dispatchEvent(new Event('change')); // Trigger change event
-        }
-    });
     
