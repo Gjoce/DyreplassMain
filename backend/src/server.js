@@ -23,8 +23,8 @@ const db = admin.firestore();
 
 // Middleware setup
 app.use(cors({
-    origin: 'https://dyreplass.no',
-    credentials: true // Ensure this is the correct origin
+    origin: 'https://dyreplass.no', // Ensure this is the correct origin
+    credentials: true
 }));
 
 app.use(express.json());
@@ -36,6 +36,10 @@ app.get('/proxy', (req, res) => {
     if (!imageUrl) {
         return res.status(400).send('No URL provided');
     }
+
+    // Set appropriate headers for the proxy response
+    res.setHeader('Access-Control-Allow-Origin', 'https://dyreplass.no');
+    res.setHeader('Access-Control-Allow-Credentials', 'true');
 
     request
         .get(imageUrl)
