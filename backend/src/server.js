@@ -30,25 +30,6 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// Proxy route for Google Drive images
-app.get('/proxy', (req, res) => {
-    const imageUrl = req.query.url;
-    if (!imageUrl) {
-        return res.status(400).send('No URL provided');
-    }
-
-    // Set appropriate headers for the proxy response
-    res.setHeader('Access-Control-Allow-Origin', 'https://dyreplass.no');
-    res.setHeader('Access-Control-Allow-Credentials', 'true');
-
-    request
-        .get(imageUrl)
-        .on('error', (err) => {
-            res.status(500).send('Error fetching image');
-        })
-        .pipe(res);
-});
-
 // Pass `db` to routes
 const puppiesRoutes = require('./api/puppies.js')(db);
 const breedersRoutes = require('./api/breeders.js')(db);
