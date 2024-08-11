@@ -76,8 +76,7 @@ document.getElementById('puppyForm').addEventListener('submit', async (e) => {
         }
     }
 
-    // If only one main picture, store it as a single string; otherwise, store as an array
-    const pictureUrl = mainPicturesUrls.length === 1 ? mainPicturesUrls[0] : mainPicturesUrls;
+   
 
         // Upload parent pictures if any
         let parentPicturesUrls = [];
@@ -98,7 +97,7 @@ document.getElementById('puppyForm').addEventListener('submit', async (e) => {
             description: description,
             name: name,
             parent_pictures: parentPicturesUrls,
-            picture_url: pictureUrl,
+            picture_url: mainPicturesUrls,
             price: price
         });
 
