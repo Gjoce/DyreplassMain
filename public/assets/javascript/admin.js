@@ -65,16 +65,20 @@ document.getElementById('puppyForm').addEventListener('submit', async (e) => {
     try {
         
          // Upload main pictures to Firebase Storage
-    let mainPicturesUrls = [];
-    if (mainPicturesFiles.length > 0) {
-        for (let i = 0; i < mainPicturesFiles.length; i++) {
-            const mainPictureFile = mainPicturesFiles[i];
-            const storageRef = storage.ref(`puppies/${name}_${Date.now()}_${i}`);
-            const snapshot = await storageRef.put(mainPictureFile);
-            const mainPictureUrl = await snapshot.ref.getDownloadURL();
-            mainPicturesUrls.push(mainPictureUrl);
+    // Upload main pictures to Firebase Storage
+        let mainPicturesUrls = [];
+        if (mainPicturesFiles.length > 0) {
+            for (let i = 0; i < mainPicturesFiles.length; i++) {
+                const mainPictureFile = mainPicturesFiles[i];
+                const storageRef = storage.ref(`puppies/${name}_${Date.now()}_${i}`);
+                const snapshot = await storageRef.put(mainPictureFile);
+                const mainPictureUrl = await snapshot.ref.getDownloadURL();
+                mainPicturesUrls.push(mainPictureUrl);
+                console.log(`Uploaded picture ${i}: ${mainPictureUrl}`); // Log each URL
+            }
+            console.log('All main picture URLs:', mainPicturesUrls); // Log the complete array
         }
-    }
+
 
    
 
