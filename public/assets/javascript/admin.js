@@ -19,7 +19,8 @@ async function verifyAuthToken() {
     const authToken = localStorage.getItem('authToken'); // Retrieve the token
 
     if (!authToken) {
-        window.location.href = 'login.html'; // Redirect if no token found
+        console.log("no token");
+       // Redirect if no token found
         return;
     }
     try {
