@@ -63,14 +63,15 @@ document.getElementById('puppyForm').addEventListener('submit', async (e) => {
     const parentPicturesFiles = document.getElementById('parentPictures').files; // Get parent pictures
 
     try {
+        // Create a folder for the puppy
+        const puppyFolderPath = `puppies/${name}_${Date.now()}`;
         
-         // Upload main pictures to Firebase Storage
-    // Upload main pictures to Firebase Storage
+        // Upload main pictures to the puppy folder
         let mainPicturesUrls = [];
         if (mainPicturesFiles.length > 0) {
             for (let i = 0; i < mainPicturesFiles.length; i++) {
                 const mainPictureFile = mainPicturesFiles[i];
-                const storageRef = storage.ref(`puppies/${name}_${Date.now()}_${i}`);
+                const storageRef = storage.ref(`${puppyFolderPath}/${name}_${i}`);
                 const snapshot = await storageRef.put(mainPictureFile);
                 const mainPictureUrl = await snapshot.ref.getDownloadURL();
                 mainPicturesUrls.push(mainPictureUrl);
@@ -79,15 +80,13 @@ document.getElementById('puppyForm').addEventListener('submit', async (e) => {
             console.log('All main picture URLs:', mainPicturesUrls); // Log the complete array
         }
 
-
-   
-
         // Upload parent pictures if any
         let parentPicturesUrls = [];
         if (parentPicturesFiles.length > 0) {
+            const parentsFolderPath = `${puppyFolderPath}/parents`;
             for (let i = 0; i < parentPicturesFiles.length; i++) {
                 const parentPictureFile = parentPicturesFiles[i];
-                const parentStorageRef = storage.ref(`puppies/parents/${name}_${Date.now()}_${i}`);
+                const parentStorageRef = storage.ref(`${parentsFolderPath}/${name}_${i}`);
                 const parentSnapshot = await parentStorageRef.put(parentPictureFile);
                 const parentPictureUrl = await parentSnapshot.ref.getDownloadURL();
                 parentPicturesUrls.push(parentPictureUrl);
@@ -113,6 +112,7 @@ document.getElementById('puppyForm').addEventListener('submit', async (e) => {
         alert('Error adding puppy. Please try again.');
     }
 });
+
 
 
 

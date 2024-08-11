@@ -17,25 +17,12 @@ document.addEventListener('DOMContentLoaded', async () => {
             `;
 
             // Display photos of previous puppies
-            if (breeder.picture_url) {
-                let gallery = '';
-
-                // If picture_url is an array
-                if (Array.isArray(breeder.picture_url)) {
-                    gallery = breeder.picture_url.map(url => `
-                        <div class="col-md-4 mb-3">
-                            <img src="${url}" class="img-fluid fixed-size rounded" alt="Previous Puppy Photo">
-                        </div>
-                    `).join('');
-                } 
-                // If picture_url is a single string
-                else if (typeof breeder.picture_url === 'string') {
-                    gallery = `
-                        <div class="col-md-4 mb-3">
-                            <img src="${breeder.picture_url}" class="img-fluid fixed-size rounded" alt="Previous Puppy Photo">
-                        </div>
-                    `;
-                }
+            if (breeder.picture_urls && breeder.picture_urls.length > 0) {
+                const gallery = breeder.picture_urls.map(url => `
+                    <div class="col-md-4 mb-3">
+                        <img src="${url}" class="img-fluid fixed-size rounded" alt="Previous Puppy Photo">
+                    </div>
+                `).join('');
 
                 document.getElementById('puppy-gallery').innerHTML = `
                     <h3>Photos of Previous Puppies</h3>
