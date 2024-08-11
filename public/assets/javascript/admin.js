@@ -150,5 +150,29 @@ document.getElementById('breederForm').addEventListener('submit', async (e) => {
     }
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    function handleFileInput(inputId, previewId) {
+        const input = document.getElementById(inputId);
+        const preview = document.getElementById(previewId);
+        input.addEventListener('change', function() {
+            preview.innerHTML = ''; // Clear existing previews
+            const files = input.files;
+            for (const file of files) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    preview.appendChild(img);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    handleFileInput('puppyPicture', 'puppyPicturePreview');
+    handleFileInput('parentPictures', 'parentPicturesPreview');
+    handleFileInput('breederPicture', 'breederPicturePreview');
+});
+
 
 

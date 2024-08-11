@@ -4,46 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="container">
         <h1>Admin Panel</h1>
         <button id="logoutBtn" class="btn btn-danger mb-3">Logout</button>
 
         <h2>Add Puppy</h2>
         <form id="puppyForm">
-            <div class="form-group">
-                <label for="puppyName">Name</label>
-                <input type="text" class="form-control" id="puppyName" required>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="puppyName">Name</label>
+                    <input type="text" class="form-control" id="puppyName" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="puppyBreed">Breed</label>
+                    <input type="text" class="form-control" id="puppyBreed" required>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="puppyBreed">Breed</label>
-                <input type="text" class="form-control" id="puppyBreed" required>
-            </div>
-            <div class="form-group">
-                <label for="breederId1">Breeder ID</label>
-                <input type="text" class="form-control" id="breederId1" required>
-            </div>
-            <div class="form-group">
-                <label for="puppyPrice">Price</label>
-                <input type="number" class="form-control" id="puppyPrice" required>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="breederId1">Breeder ID</label>
+                    <input type="text" class="form-control" id="breederId1" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="puppyPrice">Price</label>
+                    <input type="number" class="form-control" id="puppyPrice" required>
+                </div>
             </div>
             <div class="form-group">
                 <label for="puppyDescription">Description</label>
-                <textarea class="form-control" id="puppyDescription" required></textarea>
+                <textarea class="form-control" id="puppyDescription" rows="3" required></textarea>
             </div>
             <div class="form-group">
                 <label for="puppyPicture">Picture</label>
-                <input type="file" class="form-control" id="puppyPicture" multiple>
+                <label for="puppyPicture" class="custom-file-upload">
+                    Choose File
+                </label>
+                <input type="file" class="custom-file-input" id="puppyPicture" multiple>
+                <div id="puppyPicturePreview" class="file-preview"></div>
             </div>
             <div class="form-group">
                 <label for="parentPictures">Parent Pictures (optional)</label>
-                <input type="file" class="form-control" id="parentPictures" multiple>
+                <label for="parentPictures" class="custom-file-upload">
+                    Choose File
+                </label>
+                <input type="file" class="custom-file-input" id="parentPictures" multiple>
+                <div id="parentPicturesPreview" class="file-preview"></div>
             </div>
             <button type="submit" class="btn btn-primary">Add Puppy</button>
         </form>
-        
 
         <h2 class="mt-5">Add Breeder</h2>
         <form id="breederForm">
@@ -51,21 +63,26 @@
                 <label for="breederId">Breeder ID</label>
                 <input type="text" class="form-control" id="breederId" required>
             </div>
-            <div class="form-group">
-                <label for="breederName">Name</label>
-                <input type="text" class="form-control" id="breederName" required>
-            </div>
-            <div class="form-group">
-                <label for="breederDescription">Description</label>
-                <textarea class="form-control" id="breederDescription" required></textarea>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="breederName">Name</label>
+                    <input type="text" class="form-control" id="breederName" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="breederDescription">Description</label>
+                    <textarea class="form-control" id="breederDescription" rows="3" required></textarea>
+                </div>
             </div>
             <div class="form-group">
                 <label for="breederPicture">Picture</label>
-                <input type="file" class="form-control" id="breederPicture" multiple>
+                <label for="breederPicture" class="custom-file-upload">
+                    Choose File
+                </label>
+                <input type="file" class="custom-file-input" id="breederPicture" multiple>
+                <div id="breederPicturePreview" class="file-preview"></div>
             </div>
             <button type="submit" class="btn btn-primary">Add Breeder</button>
         </form>
-        
     </div>
 
     <script src="assets/javascript/firebase-app-compat.js"></script>
