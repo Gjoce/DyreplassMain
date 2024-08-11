@@ -16,6 +16,12 @@ const storage = firebase.storage();
 
 // Immediately check the auth status and token verification on page load
 async function verifyAuthToken() {
+    const authToken = localStorage.getItem('authToken'); // Retrieve the token
+
+    if (!authToken) {
+        window.location.href = 'login.html'; // Redirect if no token found
+        return;
+    }
     try {
         const response = await fetch('/api/verifyToken', {
             method: 'POST',
