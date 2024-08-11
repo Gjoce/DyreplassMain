@@ -59,14 +59,25 @@ document.getElementById('puppyForm').addEventListener('submit', async (e) => {
     const breederId1 = document.getElementById('breederId1').value;
     const price = document.getElementById('puppyPrice').value;
     const description = document.getElementById('puppyDescription').value;
-    const pictureFile = document.getElementById('puppyPicture').files[0]; // Get the file from the input
+    const mainPicturesFiles = document.getElementById('puppyPicture').files;  // Get the file from the input
     const parentPicturesFiles = document.getElementById('parentPictures').files; // Get parent pictures
 
     try {
-        // Upload main picture to Firebase Storage
-        const storageRef = storage.ref(`puppies/${name}_${Date.now()}`);
-        const snapshot = await storageRef.put(pictureFile);
-        const pictureUrl = await snapshot.ref.getDownloadURL();
+        
+         // Upload main pictures to Firebase Storage
+    let mainPicturesUrls = [];
+    if (mainPicturesFiles.length > 0) {
+        for (let i = 0; i < mainPicturesFiles.length; i++) {
+            const mainPictureFile = mainPicturesFiles[i];
+            const storageRef = storage.ref(`puppies/${name}_${Date.now()}_${i}`);
+            const snapshot = await storageRef.put(mainPictureFile);
+            const mainPictureUrl = await snapshot.ref.getDownloadURL();
+            mainPicturesUrls.push(mainPictureUrl);
+        }
+    }
+
+    // If only one main picture, store it as a single string; otherwise, store as an array
+    const pictureUrl = mainPicturesUrls.length === 1 ? mainPicturesUrls[0] : mainPicturesUrls;
 
         // Upload parent pictures if any
         let parentPicturesUrls = [];
