@@ -120,8 +120,7 @@ document.getElementById('breederForm').addEventListener('submit', async (e) => {
     e.preventDefault();
 
     // Get form values
-    const breederId = document.getElementById('breederId').value.trim(); // Ensure no leading/trailing spaces
-    
+    const breederId = document.getElementById('breederId').value.trim();
     if (!breederId) {
         alert('Breeder ID is required.');
         return;
@@ -129,16 +128,19 @@ document.getElementById('breederForm').addEventListener('submit', async (e) => {
 
     const name = document.getElementById('breederName').value.trim();
     const description = document.getElementById('breederDescription').value.trim();
-    const pictureFile = document.getElementById('breederPicture').files[0]; // Get the file from the input
+    const pictureFiles = document.getElementById('breederPicture').files; // Get multiple files
 
     try {
-        let pictureUrl = null; // Initialize pictureUrl as null
+        let pictureUrls = []; // Array to store URLs of uploaded images
 
-        if (pictureFile) {
-            // If a picture is provided, upload it to Firebase Storage
-            const storageRef = storage.ref(`breeders/${name}_${Date.now()}`);
-            const snapshot = await storageRef.put(pictureFile);
-            pictureUrl = await snapshot.ref.getDownloadURL();
+        if (pictureFiles.length > 0) {
+            for (let i = 0; i < pictureFiles.length; i++) {
+                const pictureFile = pictureFiles[i];
+                const storageRef = storage.ref(`breeders/${name}_${Date.now()}_${i}`);
+                const snapshot = await storageRef.put(pictureFile);
+                const pictureUrl = await snapshot.ref.getDownloadURL();
+                pictureUrls.push(pictureUrl); // Add the URL to the array
+            }
         }
 
         // Create the breeder data object
@@ -147,9 +149,9 @@ document.getElementById('breederForm').addEventListener('submit', async (e) => {
             description: description,
         };
 
-        // If a picture URL exists, add it to the breeder data object
-        if (pictureUrl) {
-            breederData.picture_url = pictureUrl;
+        // If picture URLs exist, add them to the breeder data object
+        if (pictureUrls.length > 0) {
+            breederData.picture_urls = pictureUrls; // Use a plural field name for multiple URLs
         }
 
         // Use the specified breederId as the document ID
@@ -163,6 +165,7 @@ document.getElementById('breederForm').addEventListener('submit', async (e) => {
         alert('Error adding breeder. Please try again.');
     }
 });
+
 
 document.addEventListener('DOMContentLoaded', function() {
     function handleFileInput(inputId, previewId) {
