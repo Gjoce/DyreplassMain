@@ -17,12 +17,25 @@ document.addEventListener('DOMContentLoaded', async () => {
             `;
 
             // Display photos of previous puppies
-            if (breeder.picture_url && breeder.picture_url.length > 0) {
-                const gallery = breeder.picture_url.map(url => `
-                    <div class="col-md-4 mb-3">
-                        <img src="${url}" class="img-fluid fixed-size rounded" alt="Previous Puppy Photo">
-                    </div>
-                `).join('');
+            if (breeder.picture_url) {
+                let gallery = '';
+
+                // If picture_url is an array
+                if (Array.isArray(breeder.picture_url)) {
+                    gallery = breeder.picture_url.map(url => `
+                        <div class="col-md-4 mb-3">
+                            <img src="${url}" class="img-fluid fixed-size rounded" alt="Previous Puppy Photo">
+                        </div>
+                    `).join('');
+                } 
+                // If picture_url is a single string
+                else if (typeof breeder.picture_url === 'string') {
+                    gallery = `
+                        <div class="col-md-4 mb-3">
+                            <img src="${breeder.picture_url}" class="img-fluid fixed-size rounded" alt="Previous Puppy Photo">
+                        </div>
+                    `;
+                }
 
                 document.getElementById('puppy-gallery').innerHTML = `
                     <h3>Photos of Previous Puppies</h3>
@@ -41,4 +54,3 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('breeder-info').innerHTML = '<p>No breeder ID provided.</p>';
     }
 });
-    
