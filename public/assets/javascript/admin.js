@@ -20,11 +20,11 @@ async function verifyAuthToken() {
 
     if (!authToken) {
         console.log("no token");
-       // Redirect if no token found
+        window.location.href = 'login.html'; // Redirect if no token found
         return;
     }
     try {
-        const response = await fetch('/api/verifyToken', {
+        const response = await fetch('https://dyreplass-6fca1ec2c6c4.herokuapp.com/api/verifyToken', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
