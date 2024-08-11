@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Admin Panel</h1>
+        <button id="logoutBtn" class="btn btn-danger mb-3">Logout</button>
+
+        <h2>Add Puppy</h2>
+        <form id="puppyForm">
+            <div class="form-group">
+                <label for="puppyName">Name</label>
+                <input type="text" class="form-control" id="puppyName" required>
+            </div>
+            <div class="form-group">
+                <label for="puppyBreed">Breed</label>
+                <input type="text" class="form-control" id="puppyBreed" required>
+            </div>
+            <div class="form-group">
+                <label for="breederId1">Breeder ID</label>
+                <input type="text" class="form-control" id="breederId1" required>
+            </div>
+            <div class="form-group">
+                <label for="puppyPrice">Price</label>
+                <input type="number" class="form-control" id="puppyPrice" required>
+            </div>
+            <div class="form-group">
+                <label for="puppyDescription">Description</label>
+                <textarea class="form-control" id="puppyDescription" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="puppyPicture">Picture</label>
+                <input type="file" class="form-control" id="puppyPicture" required>
+            </div>
+            <div class="form-group">
+                <label for="parentPictures">Parent Pictures (optional)</label>
+                <input type="file" class="form-control" id="parentPictures" multiple>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Puppy</button>
+        </form>
+        
+
+        <h2 class="mt-5">Add Breeder</h2>
+        <form id="breederForm">
+            <div class="form-group">
+                <label for="breederId">Breeder ID</label>
+                <input type="text" class="form-control" id="breederId" required>
+            </div>
+            <div class="form-group">
+                <label for="breederName">Name</label>
+                <input type="text" class="form-control" id="breederName" required>
+            </div>
+            <div class="form-group">
+                <label for="breederDescription">Description</label>
+                <textarea class="form-control" id="breederDescription" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="breederPicture">Picture</label>
+                <input type="file" class="form-control" id="breederPicture">
+            </div>
+            <button type="submit" class="btn btn-primary">Add Breeder</button>
+        </form>
+        
+    </div>
+
+    <script src="assets/javascript/firebase-app-compat.js"></script>
+    <script src="assets/javascript/firebase-auth-compat.js"></script>
+    <script src="assets/javascript/firebase-firestore-compat.js"></script>
+    <script src="assets/javascript/firebase-storage-compat.js"></script>
+    <script src="assets/javascript/admin.js"></script>
+</body>
+</html>

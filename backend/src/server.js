@@ -22,7 +22,7 @@ const db = admin.firestore();
 
 // Middleware setup
 app.use(cors({
-    origin: 'https://dyreplass.no', // Ensure this is the correct origin
+    origin: 'https://dyreplass.no',
     credentials: true
 }));
 
@@ -32,8 +32,10 @@ app.use(express.urlencoded({ extended: false }));
 // Pass `db` to routes
 const puppiesRoutes = require('./api/puppies.js')(db);
 const breedersRoutes = require('./api/breeders.js')(db);
+const authRoutes = require('./api/verifyToken.js')(db);
 app.use('/api/puppies', puppiesRoutes);
 app.use('/api/breeders', breedersRoutes);
+app.use('/api/verifyToken', authRoutes);
 
 // Error handling middleware
 app.use(errorHandler);
