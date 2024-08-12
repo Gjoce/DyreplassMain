@@ -15,22 +15,23 @@ header {
   overflow: visible; /* Allow visibility of the collapsible menu */
 }
 
-/* Make sure the navbar collapse works correctly */
+/* Ensure the navbar collapse works correctly */
 .navbar-collapse {
   transition: height 0.35s ease; /* Smooth transition for collapsing */
 }
 
+/* Hide the default toggler icon */
+.navbar-toggler-icon {
+  background-image: none !important;
+}
+
+/* Style the toggler button */
 .navbar-toggler {
   border: 1px solid white; /* Add white border */
+  background-color: #1B2727; /* Background color to match navbar */
 }
 
-.navbar-toggler-icon {
-  background-image: none;
-  position: relative;
-  width: 30px;
-  height: 20px;
-}
-
+/* Customize the toggler lines */
 .navbar-toggler-icon::before,
 .navbar-toggler-icon::after,
 .navbar-toggler-icon span {
@@ -38,7 +39,7 @@ header {
   display: block;
   position: absolute;
   height: 2px;
-  width: 100%;
+  width: 30px; /* Adjust width as needed */
   background-color: white;
 }
 
@@ -55,6 +56,14 @@ header {
   transform: translateY(-50%);
 }
 
+/* Ensure the toggler icon is correctly centered */
+.navbar-toggler-icon {
+  position: relative;
+  width: 30px;
+  height: 20px;
+}
+
+/* Ensure other navbar styles remain intact */
 .navbar-brand img {
   height: 100%; /* Adjust as needed */
   max-height: 120px; /* Ensure it fits within the navbar */
@@ -175,4 +184,3 @@ header {
   text-decoration: none; /* Ensure no underline on hover */
   color: inherit; /* Maintain color on hover */
 }
-

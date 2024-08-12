@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const response = await fetch('https://dyreplass-6fca1ec2c6c4.herokuapp.com/api/puppies');
         const puppies = await response.json();
         const listingsContainer = document.getElementById('listings-container');
-        const amountDisplay = document.getElementById('amount-display');
         const shownCount = document.getElementById('shown-count');
 
         function displayPuppies(puppiesToShow) {
@@ -15,9 +14,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 let imageUrl = Array.isArray(puppy.picture_url) ? puppy.picture_url[0] : puppy.picture_url;
 
-                // Ensure the URL is properly formatted for direct Google Drive links
-                imageUrl = imageUrl.replace('file/d/', 'uc?export=view&id=').replace('/view?usp=sharing', '');
-
                 // Wrap the card in an anchor tag
                 puppyCard.innerHTML = 
                     `<a href="../details.html?id=${puppy.id}" class="card-link">
@@ -25,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             <img src="${imageUrl}" class="card-img-top img-fluid rounded" style="max-height: 200px; max-width: 100%; object-fit: cover;" alt="${puppy.name}">
                             <div class="card-body">
                                 <h4 class="card-title">${puppy.name}</h4>
-                                <h5 class="card-text">${puppy.breed} Puppy</h5>
+                                <h5 class="card-text">${puppy.breed} valp</h5>
                                 <p class="card-text">${puppy.price} NOK</p>
                             </div>
                         </div>
