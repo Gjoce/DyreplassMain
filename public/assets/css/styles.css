@@ -184,3 +184,9 @@ header {
   text-decoration: none; /* Ensure no underline on hover */
   color: inherit; /* Maintain color on hover */
 }
+
+@media (max-width: 767.98px) {
+  #notfound {
+    margin-top: 20px; /* Adjust this value as needed */
+  }
+}
